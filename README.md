@@ -13,7 +13,7 @@ A lightweight Neovim plugin to upload SuiteScript files to NetSuite using SuiteC
   npm install -g @oracle/suitecloud-cli
   ```
 
-## �Installation
+## 🚀 Installation
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
@@ -35,6 +35,6 @@ The following keybindings are available by default:
 - `<leader>Ni`: Run `:SuiteDownload` to import files from NetSuite.
 - `<leader>Nu`: Run `:SuiteUpload` to upload the current file to NetSuite.
 
-## ⚠️ Disclaimer
+## ℹ️ Disclaimer
 This project has been developed for personal use. I cannot guarantee that it will work as expected in all environments or use cases. Use it at your own risk, and I assume no responsibility for any issues that may arise.
 
