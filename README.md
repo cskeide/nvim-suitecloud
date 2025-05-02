@@ -10,7 +10,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "yourusername/nvim-suitecloud",
+  "cskeide/nvim-suitecloud",
   config = function()
     require("suitecloud")
   end,
