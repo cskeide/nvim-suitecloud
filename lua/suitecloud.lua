@@ -3,7 +3,7 @@ local M = {}
 local function find_project_root()
 	local cwd = vim.fn.getcwd()
 	while cwd ~= '/' do
-		if vim.fn.isdirectory(cwd .. '/.suitecloud') == 1 then
+		if vim.fn.filereadable(cwd .. '/suitecloud.config.js') == 1 then
 			return cwd
 		end
 		cwd = vim.fn.fnamemodify(cwd, ':h')
@@ -12,14 +12,7 @@ local function find_project_root()
 end
 
 local function run_in_project_root(cmd)
-	local project_root = find_project_root()
-	if not project_root then
-		vim.api.nvim_err_writeln("No .suitecloud folder found in the project hierarchy.")
-		return
-	end
-
 	vim.fn.jobstart(cmd, {
-		cwd = project_root,
 		stdout_buffered = true,
 		on_stdout = function(_, data)
 			if data then
