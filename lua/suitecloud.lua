@@ -26,6 +26,8 @@ local function is_suitecloud_installed()
 	end
 end
 
+local snacks = require("snacks")
+
 local function run_suitecloud_command(cmd, notification)
 	if not is_suitecloud_installed() then
 		vim.notify("SuiteCloud CLI is not installed or not in PATH", vim.log.levels.ERROR)
@@ -38,28 +40,14 @@ local function run_suitecloud_command(cmd, notification)
 	end
 	vim.notify(notification, vim.log.levels.INFO)
 
-	local buf = vim.api.nvim_create_buf(false, true) -- Create a new buffer
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-	local row = math.floor((vim.o.lines - height) / 2)
-	local col = math.floor((vim.o.columns - width) / 2)
-
-	local win = vim.api.nvim_open_win(buf, true, {
-		relative = 'editor',
-		width = width,
-		height = height,
-		row = row,
-		col = col,
-		style = 'minimal',
-	})
-
-	vim.fn.termopen(cmd, {
-		cwd = project_root,
-		on_exit = function()
-			--vim.api.nvim_win_close(win, true)
-		end,
-	})
-	vim.cmd("startinsert")
+	snacks.terminal.open(
+		cmd,
+		{
+			cwd = project_root,
+			start_insert = true,
+			auto_close = false,
+		}
+)
 end
 
 M.setup_account = function()
