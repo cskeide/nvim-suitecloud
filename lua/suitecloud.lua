@@ -92,4 +92,8 @@ vim.api.nvim_create_user_command("SuiteUpload", M.upload_current_file, {})
 vim.api.nvim_create_user_command("SuiteSetup", M.setup_account, {})
 vim.api.nvim_create_user_command("SuiteDownload", M.download_file, {})
 
+vim.api.nvim_set_keymap('n', '<leader>Ns', ':SuiteSetup<CR>', { noremap = true, silent = true, desc = 'SuiteCloud Setup' })
+vim.api.nvim_set_keymap('n', '<leader>Nu', ':SuiteUpload<CR>', { noremap = true, silent = true, desc = 'SuiteCloud Upload' })
+vim.api.nvim_set_keymap('n', '<leader>Ni', ':SuiteDownload<CR>', { noremap = true, silent = true, desc = 'SuiteCloud Import' })
+
 return M
