@@ -7,7 +7,7 @@ A lightweight Neovim plugin to upload SuiteScript files to NetSuite using SuiteC
 - `:SuiteDownload` — Download a file from NetSuite using `suitecloud file:import`
 - `:SuiteUpload` — Upload current file to NetSuite using `suitecloud file:upload`
 
-##  �️ Prerequisites
+## 🛠️ Prerequisites
 - [SuiteCloud CLI](https://www.npmjs.com/package/@oracle/suitecloud-cli) must be installed globally using npm:
   ```bash
   npm install -g @oracle/suitecloud-cli
@@ -23,13 +23,37 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
     "folke/snacks.nvim",
   },
   config = function()
-    require("suitecloud")
+    require("suitecloud").setup()
   end,
 }
 ```
 
+The plugin is automatically set up with default options when loaded via the plugin runtime directory. Calling `setup()` explicitly in your config is only required if you want to customise options.
+
+## ⚙️ Configuration
+
+`setup()` accepts an optional table of options:
+
+```lua
+require("suitecloud").setup({
+  -- Set keymaps = false to disable all default keybindings.
+  -- Or provide a table of custom keys to override individual bindings.
+  keymaps = {
+    setup    = "<leader>Na",  -- :SuiteSetup
+    upload   = "<leader>Nu",  -- :SuiteUpload
+    download = "<leader>Ni",  -- :SuiteDownload
+  },
+})
+```
+
+To disable default keybindings entirely:
+
+```lua
+require("suitecloud").setup({ keymaps = false })
+```
+
 ## ⌨️ Default Keybindings
-The following keybindings are available by default:
+The following keybindings are set up by default (pass `keymaps = false` to opt out):
 
 - `<leader>Na`: Run `:SuiteSetup` to set up your NetSuite account.
 - `<leader>Ni`: Run `:SuiteDownload` to import files from NetSuite.
